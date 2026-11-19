@@ -19,157 +19,52 @@ st.markdown(
     """
     <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
-
-    :root {
-      --fs-bg: #f4f7f6;
-      --fs-surface: #ffffff;
-      --fs-surface-soft: #edf3f1;
-      --fs-border: #dce6e2;
-      --fs-ink: #20312f;
-      --fs-muted: #667a75;
-      --fs-teal: #267c70;
-      --fs-teal-soft: #e5f2ee;
-      --fs-copper: #bd784d;
-      --fs-copper-soft: #f8eee7;
-      --fs-danger: #b84c58;
-    }
-
-    html, body, [class*="css"] { font-family: 'Manrope', sans-serif; }
-    .stApp {
-      background:
-        radial-gradient(ellipse at 8% 0%, rgba(204,226,217,.48), transparent 34%),
-        radial-gradient(ellipse at 95% 5%, rgba(245,224,208,.42), transparent 28%),
-        var(--fs-bg);
-      color: var(--fs-ink);
-    }
-    [data-testid="stHeader"] { background: rgba(244,247,246,.88); }
-    [data-testid="stToolbar"] { right: 1rem; }
-    .block-container { padding-top: 1.6rem; padding-bottom: 4rem; max-width: 1540px; }
-
-    [data-testid="stSidebar"] {
-      background: linear-gradient(180deg, #eaf1ee 0%, #f5f7f5 100%);
-      border-right: 1px solid #d9e4df;
-    }
-    [data-testid="stSidebar"] > div { padding-top: 1.5rem; }
-    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
-    [data-testid="stSidebar"] [data-testid="stCaptionContainer"] {
-      color: #5e746d !important;
-    }
-    [data-testid="stSidebar"] strong { color: #29443d !important; }
-
-    h1, h2, h3, h4 { color: #203b36 !important; letter-spacing: -.04em; }
-    h1 { font-weight: 800 !important; }
-    h2, h3 { font-weight: 750 !important; }
-    p, label, li, [data-testid="stMarkdownContainer"] { color: #425b55; }
-    [data-testid="stCaptionContainer"], small { color: #71827d !important; }
-    code, .stCode, [data-testid="stCode"] { font-family: 'DM Mono', monospace !important; }
-
-    div[data-testid="stMetric"] {
-      background: linear-gradient(145deg, #ffffff 0%, #f8fbf9 100%);
-      border: 1px solid var(--fs-border);
-      border-radius: 15px;
-      padding: 17px 19px;
-      box-shadow: 0 7px 22px rgba(44,75,65,.055);
-      min-height: 108px;
-    }
-    [data-testid="stMetricLabel"] { color: #657b74 !important; font-size: .78rem; font-weight: 700; }
-    [data-testid="stMetricValue"] { color: #203b36 !important; font-weight: 800; letter-spacing: -.04em; }
-    [data-testid="stMetricDelta"] { font-family: 'DM Mono', monospace; font-size: .75rem; }
-
-    div[data-testid="stForm"], div[data-testid="stExpander"],
-    div[data-testid="stDataFrame"], div[data-testid="stTable"] {
-      border: 1px solid var(--fs-border);
-      border-radius: 14px;
-      background: rgba(255,255,255,.88);
-    }
-    div[data-testid="stForm"] { padding: 1.1rem 1.2rem; }
-    div[data-testid="stExpander"] summary { color: #29443d !important; font-weight: 700; }
-    [data-testid="stExpander"] [data-testid="stMarkdownContainer"] { color: #425b55; }
-
-    .stTextInput input, .stTextArea textarea, .stNumberInput input,
-    .stDateInput input, .stTimeInput input {
-      background: #ffffff !important;
-      color: #243b36 !important;
-      border: 1px solid #cbdad4 !important;
-      border-radius: 10px !important;
-      font-family: 'DM Mono', monospace !important;
-    }
-    .stTextInput input::placeholder, .stTextArea textarea::placeholder { color: #93a39d !important; }
-    .stTextInput input:focus, .stTextArea textarea:focus, .stNumberInput input:focus {
-      border-color: #4c9b8c !important;
-      box-shadow: 0 0 0 1px #4c9b8c !important;
-    }
-    [data-baseweb="select"] > div, [data-baseweb="input"] > div {
-      background: #ffffff !important;
-      border-color: #cbdad4 !important;
-      color: #243b36 !important;
-    }
-    [data-baseweb="popover"], [data-baseweb="menu"] {
-      background: #ffffff !important;
-      color: #243b36 !important;
-    }
-    [role="option"] { color: #243b36 !important; }
-
-    .stButton button, [data-testid="stFormSubmitButton"] button {
-      border-radius: 10px;
-      border: 1px solid #267c70;
-      background: linear-gradient(110deg, #347f72, #286e64);
-      color: #ffffff !important;
-      font-weight: 800;
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    .stButton button:hover, [data-testid="stFormSubmitButton"] button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 7px 20px rgba(38,124,112,.18);
-      background: #245f57;
-      border-color: #245f57;
-    }
-    .stButton button p, [data-testid="stFormSubmitButton"] button p { color: #ffffff !important; }
-
-    hr { border-color: #dce6e2 !important; }
-    [data-testid="stAlert"] { border-radius: 12px; border: 1px solid #dce6e2; }
-    [data-testid="stDataFrame"] { overflow: hidden; }
-    [data-testid="stCode"] pre {
-      background: #edf3f1 !important;
-      color: #29443d !important;
-      border: 1px solid #dce6e2;
-      border-radius: 11px;
-    }
-    [data-testid="stJson"] { background: #f7faf8; border-radius: 10px; }
-    .fs-eyebrow {
-      color: #d9eee7;
-      font: 500 11px 'DM Mono', monospace;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-    .fs-hero {
-      position: relative; overflow: hidden;
-      padding: 28px 32px 27px; margin: 4px 0 25px;
-      border: 1px solid rgba(255,255,255,.22);
-      border-radius: 20px;
-      background:
-        radial-gradient(circle at 86% 12%, rgba(208,157,111,.25), transparent 28%),
-        linear-gradient(112deg, #315c53 0%, #274941 58%, #3d5148 100%);
-      box-shadow: 0 14px 35px rgba(48,82,70,.14);
-    }
-    .fs-hero h1 { margin: 7px 0 5px; color: #ffffff !important; font-size: clamp(1.8rem, 3vw, 2.65rem); }
-    .fs-hero p { margin: 0; color: #e0ece7 !important; max-width: 760px; }
-    .fs-hero-tag {
-      display: inline-block; margin-top: 17px; padding: 6px 10px;
-      border-radius: 7px; border: 1px solid rgba(222,241,233,.35);
-      color: #e8f5ee; background: rgba(255,255,255,.09);
-      font: 11px 'DM Mono', monospace; letter-spacing: .08em;
-    }
-    .fs-section-kicker {
-      color: var(--fs-copper); font: 500 10px 'DM Mono', monospace;
-      letter-spacing: .16em; text-transform: uppercase; margin-bottom: 3px;
-    }
-    .fs-mono { font-family: 'DM Mono', monospace; }
-    [data-testid="stStatusWidget"] { border-radius: 9px; }
-    @media (max-width: 800px) {
-      .block-container { padding-left: 1rem; padding-right: 1rem; }
-      .fs-hero { padding: 21px; }
-    }
+    :root { --fs-bg:#0b0d10; --fs-panel:#14181e; --fs-line:#29313b; --fs-text:#f2f4f7; --fs-muted:#a1aab5; --fs-orange:#f7931a; }
+    html,body,[class*="css"]{font-family:'Manrope',sans-serif}
+    .stApp{background:radial-gradient(ellipse at 80% -10%,rgba(247,147,26,.09),transparent 30%),radial-gradient(ellipse at 4% 12%,rgba(65,91,115,.12),transparent 28%),var(--fs-bg);color:var(--fs-text)}
+    [data-testid="stHeader"]{background:rgba(11,13,16,.92)}
+    .block-container{max-width:1500px;padding-top:1.4rem;padding-bottom:4rem}
+    [data-testid="stSidebar"]{background:linear-gradient(180deg,#11151b,#0d1015);border-right:1px solid var(--fs-line)}
+    [data-testid="stSidebar"]>div{padding-top:1.35rem}
+    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,[data-testid="stSidebar"] [data-testid="stCaptionContainer"]{color:#aab3be!important}
+    [data-testid="stSidebar"] strong{color:#f1f3f6!important}
+    h1,h2,h3,h4{color:#f4f6f8!important;letter-spacing:-.04em}
+    h1{font-weight:800!important} h2,h3{font-weight:750!important}
+    p,li,label,[data-testid="stMarkdownContainer"]{color:#d0d6dd}
+    [data-testid="stCaptionContainer"],small{color:#a1aab5!important}
+    code,pre,.stCode,[data-testid="stCode"]{font-family:'DM Mono',monospace!important}
+    div[data-testid="stMetric"]{background:linear-gradient(145deg,#1a2028,#14191f);border:1px solid #303945;border-radius:15px;padding:16px 18px;min-height:105px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+    [data-testid="stMetricLabel"]{color:#aab4c0!important;font-size:.76rem;font-weight:700}
+    [data-testid="stMetricValue"]{color:#f6f7f9!important;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+    [data-testid="stMetricDelta"]{font-family:'DM Mono',monospace}
+    div[data-testid="stForm"],div[data-testid="stExpander"],div[data-testid="stDataFrame"],div[data-testid="stTable"]{border:1px solid #303945;border-radius:14px;background:#14191f}
+    div[data-testid="stForm"]{padding:1.15rem 1.2rem}
+    div[data-testid="stExpander"] summary{color:#edf1f5!important;font-weight:700}
+    .stTextInput input,.stTextArea textarea,.stNumberInput input,.stDateInput input,.stTimeInput input{background:#0e1319!important;color:#f2f4f7!important;border:1px solid #3a4653!important;border-radius:10px!important;font-family:'DM Mono',monospace!important}
+    .stTextInput input::placeholder,.stTextArea textarea::placeholder{color:#778391!important}
+    .stTextInput input:focus,.stTextArea textarea:focus,.stNumberInput input:focus{border-color:var(--fs-orange)!important;box-shadow:0 0 0 1px var(--fs-orange)!important}
+    [data-baseweb="select"]>div,[data-baseweb="input"]>div{background:#10151c!important;border-color:#3a4653!important;color:#f2f4f7!important}
+    [data-baseweb="popover"],[data-baseweb="menu"]{background:#171d25!important;color:#f2f4f7!important}
+    [role="option"]{color:#f2f4f7!important}
+    .stButton button,[data-testid="stFormSubmitButton"] button{border-radius:10px;border:1px solid #f7931a;background:linear-gradient(110deg,#f7931a,#e98212);color:#17120b!important;font-weight:800;transition:all .16s ease}
+    .stButton button:hover,[data-testid="stFormSubmitButton"] button:hover{transform:translateY(-1px);box-shadow:0 7px 22px rgba(247,147,26,.2);background:#ffab3d;border-color:#ffab3d}
+    .stButton button p,[data-testid="stFormSubmitButton"] button p{color:#17120b!important}
+    [data-testid="stTabs"] button{color:#aeb8c3!important;font-weight:700}
+    [data-testid="stTabs"] button[aria-selected="true"]{color:#ffad45!important;border-bottom-color:#f7931a!important}
+    hr{border-color:#29313b!important}
+    [data-testid="stAlert"]{border-radius:12px;border:1px solid #303945}
+    [data-testid="stCode"] pre{background:#0e1319!important;color:#e8edf2!important;border:1px solid #303945;border-radius:11px}
+    [data-testid="stJson"]{background:#10151c;border-radius:10px}
+    .fs-eyebrow{color:#ffb75e;font:500 11px 'DM Mono',monospace;letter-spacing:.18em;text-transform:uppercase}
+    .fs-hero{position:relative;overflow:hidden;padding:27px 31px 25px;margin:4px 0 24px;border:1px solid rgba(247,147,26,.28);border-radius:19px;background:radial-gradient(circle at 88% 5%,rgba(247,147,26,.16),transparent 27%),linear-gradient(112deg,#191f27,#12171e 66%,#1b1b1b);box-shadow:0 16px 42px rgba(0,0,0,.22)}
+    .fs-hero h1{margin:7px 0 5px;color:#f6f7f8!important;font-size:clamp(1.8rem,3vw,2.55rem)}
+    .fs-hero p{margin:0;color:#b8c1cb!important;max-width:760px}
+    .fs-hero-tag{display:inline-block;margin-top:16px;padding:6px 10px;border-radius:7px;border:1px solid rgba(247,147,26,.32);color:#ffc477;background:rgba(247,147,26,.08);font:11px 'DM Mono',monospace;letter-spacing:.08em}
+    .fs-section-kicker{color:#f7a63e;font:500 10px 'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;margin-bottom:3px}
+    .fs-mono{font-family:'DM Mono',monospace;font-variant-numeric:tabular-nums}
+    .fs-help-card{border:1px solid #303945;border-radius:13px;padding:14px 16px;background:linear-gradient(135deg,#171e26,#131920);margin:8px 0 14px}
+    .fs-help-card strong{color:#f4f6f8}
+    @media(max-width:800px){.block-container{padding-left:1rem;padding-right:1rem}.fs-hero{padding:21px}}
     </style>
     """,
     unsafe_allow_html=True,
@@ -178,11 +73,10 @@ st.markdown(
 st.markdown(
     """
     <div class="fs-hero">
-      <div class="fs-eyebrow">Financial intelligence · Bitcoin network</div>
-      <h1>FraudShield <span style="color:#e0b28e">/</span> AI</h1>
-      <p>On-chain investigations, sanctions intelligence and explainable risk signals.
-         Evidence first. Decisions with context.</p>
-      <span class="fs-hero-tag">● SYSTEM ONLINE &nbsp; / &nbsp; BITCOIN MAINNET DATA</span>
+      <div class="fs-eyebrow">BITCOIN INTELLIGENCE PLATFORM · MAINNET</div>
+      <h1>FraudShield <span style="color:#f7931a">/</span> AI</h1>
+      <p>Investigate transactions. Explore on-chain relationships. Screen addresses against official sanctions data.</p>
+      <span class="fs-hero-tag">● EVIDENCE-LED INVESTIGATIONS &nbsp; / &nbsp; LIVE DATA PIPELINE</span>
     </div>
     """,
     unsafe_allow_html=True,
@@ -474,11 +368,25 @@ if active_page == "Investigations":
         "and observed UTXO graph relationships."
     )
 
+    st.markdown(
+        '<div class="fs-help-card"><strong>Try a live investigation</strong><br><span style="color:#a1aab5">Paste a Bitcoin transaction ID, or load the verified example stored in this demo environment.</span></div>',
+        unsafe_allow_html=True,
+    )
+    demo_txid = "64a24d399c4302373531a40bbd87fa9d1b4dc0d4699b573cbd43a9269a00a87e"
+    def load_demo_transaction():
+        st.session_state["transaction_txid_input"] = demo_txid
+    demo_col, note_col = st.columns([1, 3])
+    with demo_col:
+        st.button("Load example transaction", key="load_demo_transaction", on_click=load_demo_transaction, use_container_width=True)
+    with note_col:
+        st.caption("Example transaction · confirmed on Bitcoin mainnet · explore the full investigation workflow")
     with st.form("transaction_search"):
         txid = st.text_input(
             "Bitcoin transaction ID",
-            placeholder="Enter a 64-character transaction ID",
+            placeholder="Paste a 64-character transaction ID",
             max_chars=64,
+            key="transaction_txid_input",
+            help="A transaction ID is a 64-character hexadecimal identifier.",
         ).strip().lower()
 
         submitted = st.form_submit_button(
@@ -857,7 +765,12 @@ if active_page == "Investigations":
     )
     st.header("Bitcoin Address Sanctions Screening")
     st.caption(
-        "Screen a Bitcoin address against the active official OFAC sanctions snapshot."
+        "Check an address against the active official OFAC sanctions snapshot. "
+        "Exact matches are investigative leads, not proof of ownership or wrongdoing."
+    )
+    st.markdown(
+        '<div class="fs-help-card"><strong>Address screening</strong><br><span style="color:#a1aab5">Paste a Bitcoin address to review exact matches, entity details and official dataset provenance.</span></div>',
+        unsafe_allow_html=True,
     )
 
     with st.form("sanctions_screening"):
