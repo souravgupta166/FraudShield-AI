@@ -99,9 +99,9 @@ with st.sidebar:
     st.markdown(
         """
         <div style="padding:4px 0 15px">
-          <div style="font:500 10px 'DM Mono',monospace;letter-spacing:.18em;color:#267c70">FRAUDSHIELD / INTEL</div>
-          <div style="font-size:22px;font-weight:800;letter-spacing:-1px;color:#29443d;margin-top:5px">Command Center</div>
-          <div style="font:11px 'DM Mono',monospace;color:#71827d;margin-top:4px">BUILD 0.1.0 · BTC MAINNET</div>
+          <div style="font:500 10px 'DM Mono',monospace;letter-spacing:.18em;color:#f7931a">FRAUDSHIELD / INTEL</div>
+          <div style="font-size:22px;font-weight:800;letter-spacing:-1px;color:#f2f4f7;margin-top:5px">Command Center</div>
+          <div style="font:11px 'DM Mono',monospace;color:#9ca7b3;margin-top:4px">BUILD 0.1.0 · BTC MAINNET</div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -119,7 +119,7 @@ with st.sidebar:
     st.caption("Storage · PostgreSQL")
     st.divider()
     st.markdown(
-        '<span style="color:#51d6d0;font:11px \'DM Mono\',monospace">● LIVE MONITORING ENABLED</span>',
+        '<span style="color:#f7931a;font:11px \'DM Mono\',monospace">● LIVE MONITORING ENABLED</span>',
         unsafe_allow_html=True,
     )
 
