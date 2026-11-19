@@ -333,7 +333,19 @@ def render_ingestion_monitor():
                     "Started (UTC)": run.get("started_at"),
                     "Source": run.get("source"),
                     "Status": run.get("status"),
- 
+                    "Transactions processed": run.get("transactions_processed", 0),
+                    "Error": run.get("error_message"),
+                }
+                for run in recent_runs
+            ]
+            st.dataframe(
+                display_runs,
+                use_container_width=True,
+                hide_index=True,
+            )
+        else:
+            st.info("No ingestion activity has been recorded yet.")
+
 def render_intelligence_rail():
     """Show live, database-backed Bitcoin intelligence alongside the workspace."""
     st.markdown(
