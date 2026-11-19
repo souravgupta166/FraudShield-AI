@@ -463,11 +463,11 @@ if active_page == "Network Monitoring":
     render_ingestion_monitor()
 
 if active_page == "Investigations":
-        st.markdown(
-            '<div class="fs-section-kicker">CASEWORK / ON-CHAIN INTELLIGENCE</div>',
-            unsafe_allow_html=True,
-        )
-        st.title("Transaction Investigation")
+    st.markdown(
+        '<div class="fs-section-kicker">CASEWORK / ON-CHAIN INTELLIGENCE</div>',
+        unsafe_allow_html=True,
+    )
+    st.title("Transaction Investigation")
 
     st.caption(
         "Inspect on-chain transaction details, explainable risk indicators "
