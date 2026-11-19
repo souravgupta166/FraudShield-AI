@@ -7,3 +7,6 @@ pydantic-settings
 python-dotenv
 pytest
 httpx
+alembic>=1.14,<2
+networkx==3.5
+streamlit>=1.40,<2

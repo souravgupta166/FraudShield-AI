@@ -38,6 +38,9 @@ services:
       dockerfile: Dockerfile
     container_name: fraudshield-api
     restart: unless-stopped
+    volumes:
+      - ./db:/app/db
+      - ./alembic.ini:/app/alembic.ini:ro
     environment:
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       REDIS_URL: redis://redis:6379/0
@@ -58,6 +61,52 @@ services:
       timeout: 5s
       retries: 5
       start_period: 20s
+
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fraudshield-dashboard
+    restart: unless-stopped
+    command:
+      - streamlit
+      - run
+      - app/main.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+    environment:
+      API_BASE_URL: http://api:8000
+    ports:
+      - "127.0.0.1:8501:8501"
+    depends_on:
+      api:
+        condition: service_healthy
+
+
+  ingestion-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fraudshield-ingestion-worker
+    restart: unless-stopped
+    init: true
+    command: ["python", "-m", "src.data.bitcoin_worker"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      BITCOIN_WORKER_POLL_SECONDS: "30"
+      BITCOIN_WORKER_SCAN_DEPTH: "3"
+      BITCOIN_WORKER_MAX_PAGES_PER_CYCLE: "5"
+      BITCOIN_WORKER_PAGE_DELAY_SECONDS: "1.0"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
   postgres_data:
