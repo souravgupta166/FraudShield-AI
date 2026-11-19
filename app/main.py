@@ -346,6 +346,10 @@ def render_ingestion_monitor():
         else:
             st.info("No ingestion activity has been recorded yet.")
 
+    except (httpx.RequestError, httpx.HTTPStatusError, ValueError, TypeError, KeyError) as exc:
+        st.error("Unable to load ingestion monitoring data from the API.")
+        st.caption(f"Monitoring request failed: {type(exc).__name__}")
+
 def render_intelligence_rail():
     """Show live, database-backed Bitcoin intelligence alongside the workspace."""
     st.markdown(
