@@ -21,129 +21,154 @@ st.markdown(
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
 
     :root {
-        --fs-bg: #080c12;
-        --fs-panel: #101722;
-        --fs-panel-2: #131e2b;
-        --fs-line: rgba(145, 167, 190, .15);
-        --fs-text: #eaf1f8;
-        --fs-muted: #8292a6;
-        --fs-orange: #ff9b45;
-        --fs-cyan: #51d6d0;
-        --fs-red: #ff657a;
+      --fs-bg: #f4f7f6;
+      --fs-surface: #ffffff;
+      --fs-surface-soft: #edf3f1;
+      --fs-border: #dce6e2;
+      --fs-ink: #20312f;
+      --fs-muted: #667a75;
+      --fs-teal: #267c70;
+      --fs-teal-soft: #e5f2ee;
+      --fs-copper: #bd784d;
+      --fs-copper-soft: #f8eee7;
+      --fs-danger: #b84c58;
     }
 
     html, body, [class*="css"] { font-family: 'Manrope', sans-serif; }
     .stApp {
-        background:
-            radial-gradient(ellipse at 12% 0%, rgba(34, 91, 112, .19), transparent 34%),
-            radial-gradient(ellipse at 92% 8%, rgba(255, 132, 53, .10), transparent 27%),
-            var(--fs-bg);
-        color: var(--fs-text);
+      background:
+        radial-gradient(ellipse at 8% 0%, rgba(204,226,217,.48), transparent 34%),
+        radial-gradient(ellipse at 95% 5%, rgba(245,224,208,.42), transparent 28%),
+        var(--fs-bg);
+      color: var(--fs-ink);
     }
-    [data-testid="stHeader"] { background: rgba(8,12,18,.72); }
+    [data-testid="stHeader"] { background: rgba(244,247,246,.88); }
     [data-testid="stToolbar"] { right: 1rem; }
-    .block-container {
-        padding-top: 1.5rem;
-        padding-bottom: 4rem;
-        max-width: 1540px;
-    }
+    .block-container { padding-top: 1.6rem; padding-bottom: 4rem; max-width: 1540px; }
+
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #0d1520 0%, #0a1018 100%);
-        border-right: 1px solid var(--fs-line);
+      background: linear-gradient(180deg, #eaf1ee 0%, #f5f7f5 100%);
+      border-right: 1px solid #d9e4df;
     }
     [data-testid="stSidebar"] > div { padding-top: 1.5rem; }
-    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
-        color: #a7b5c6;
+    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+    [data-testid="stSidebar"] [data-testid="stCaptionContainer"] {
+      color: #5e746d !important;
     }
-    h1, h2, h3 { letter-spacing: -.045em; color: var(--fs-text); }
+    [data-testid="stSidebar"] strong { color: #29443d !important; }
+
+    h1, h2, h3, h4 { color: #203b36 !important; letter-spacing: -.04em; }
     h1 { font-weight: 800 !important; }
     h2, h3 { font-weight: 750 !important; }
-    p, label, li { color: #b8c5d3; }
-    small, [data-testid="stCaptionContainer"] { color: var(--fs-muted) !important; }
-    code, .stCode, [data-testid="stCode"] {
-        font-family: 'DM Mono', monospace !important;
-    }
+    p, label, li, [data-testid="stMarkdownContainer"] { color: #425b55; }
+    [data-testid="stCaptionContainer"], small { color: #71827d !important; }
+    code, .stCode, [data-testid="stCode"] { font-family: 'DM Mono', monospace !important; }
+
     div[data-testid="stMetric"] {
-        background: linear-gradient(145deg, rgba(21,32,46,.96), rgba(13,21,31,.96));
-        border: 1px solid var(--fs-line);
-        border-radius: 15px;
-        padding: 17px 19px;
-        box-shadow: 0 12px 32px rgba(0,0,0,.16);
-        min-height: 112px;
+      background: linear-gradient(145deg, #ffffff 0%, #f8fbf9 100%);
+      border: 1px solid var(--fs-border);
+      border-radius: 15px;
+      padding: 17px 19px;
+      box-shadow: 0 7px 22px rgba(44,75,65,.055);
+      min-height: 108px;
     }
-    [data-testid="stMetricLabel"] { color: #91a2b6 !important; font-size: .78rem; font-weight: 700; }
-    [data-testid="stMetricValue"] { color: #f4f8fc !important; font-weight: 800; letter-spacing: -.04em; }
+    [data-testid="stMetricLabel"] { color: #657b74 !important; font-size: .78rem; font-weight: 700; }
+    [data-testid="stMetricValue"] { color: #203b36 !important; font-weight: 800; letter-spacing: -.04em; }
     [data-testid="stMetricDelta"] { font-family: 'DM Mono', monospace; font-size: .75rem; }
-    div[data-testid="stForm"], div[data-testid="stExpander"], div[data-testid="stDataFrame"] {
-        border: 1px solid var(--fs-line);
-        border-radius: 15px;
-        background: rgba(15,23,34,.72);
+
+    div[data-testid="stForm"], div[data-testid="stExpander"],
+    div[data-testid="stDataFrame"], div[data-testid="stTable"] {
+      border: 1px solid var(--fs-border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.88);
     }
     div[data-testid="stForm"] { padding: 1.1rem 1.2rem; }
-    div[data-testid="stExpander"] summary { color: #dce6f0; font-weight: 700; }
-    .stTextInput input {
-        background: #0b121c !important;
-        color: #edf5fc !important;
-        border: 1px solid #2a3a4d !important;
-        border-radius: 10px !important;
-        font-family: 'DM Mono', monospace !important;
+    div[data-testid="stExpander"] summary { color: #29443d !important; font-weight: 700; }
+    [data-testid="stExpander"] [data-testid="stMarkdownContainer"] { color: #425b55; }
+
+    .stTextInput input, .stTextArea textarea, .stNumberInput input,
+    .stDateInput input, .stTimeInput input {
+      background: #ffffff !important;
+      color: #243b36 !important;
+      border: 1px solid #cbdad4 !important;
+      border-radius: 10px !important;
+      font-family: 'DM Mono', monospace !important;
     }
-    .stTextInput input:focus {
-        border-color: var(--fs-cyan) !important;
-        box-shadow: 0 0 0 1px var(--fs-cyan) !important;
+    .stTextInput input::placeholder, .stTextArea textarea::placeholder { color: #93a39d !important; }
+    .stTextInput input:focus, .stTextArea textarea:focus, .stNumberInput input:focus {
+      border-color: #4c9b8c !important;
+      box-shadow: 0 0 0 1px #4c9b8c !important;
     }
+    [data-baseweb="select"] > div, [data-baseweb="input"] > div {
+      background: #ffffff !important;
+      border-color: #cbdad4 !important;
+      color: #243b36 !important;
+    }
+    [data-baseweb="popover"], [data-baseweb="menu"] {
+      background: #ffffff !important;
+      color: #243b36 !important;
+    }
+    [role="option"] { color: #243b36 !important; }
+
     .stButton button, [data-testid="stFormSubmitButton"] button {
-        border-radius: 10px;
-        border: 1px solid rgba(255,155,69,.55);
-        background: linear-gradient(110deg, #ff9b45, #ff713d);
-        color: #111820;
-        font-weight: 800;
-        transition: transform .15s ease, box-shadow .15s ease;
+      border-radius: 10px;
+      border: 1px solid #267c70;
+      background: linear-gradient(110deg, #347f72, #286e64);
+      color: #ffffff !important;
+      font-weight: 800;
+      transition: transform .15s ease, box-shadow .15s ease;
     }
     .stButton button:hover, [data-testid="stFormSubmitButton"] button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 8px 24px rgba(255,132,61,.22);
-        color: #101820;
-        border-color: #ffb16f;
+      transform: translateY(-1px);
+      box-shadow: 0 7px 20px rgba(38,124,112,.18);
+      background: #245f57;
+      border-color: #245f57;
     }
-    hr { border-color: var(--fs-line) !important; }
-    [data-testid="stAlert"] { border-radius: 12px; border: 1px solid var(--fs-line); }
+    .stButton button p, [data-testid="stFormSubmitButton"] button p { color: #ffffff !important; }
+
+    hr { border-color: #dce6e2 !important; }
+    [data-testid="stAlert"] { border-radius: 12px; border: 1px solid #dce6e2; }
     [data-testid="stDataFrame"] { overflow: hidden; }
+    [data-testid="stCode"] pre {
+      background: #edf3f1 !important;
+      color: #29443d !important;
+      border: 1px solid #dce6e2;
+      border-radius: 11px;
+    }
+    [data-testid="stJson"] { background: #f7faf8; border-radius: 10px; }
     .fs-eyebrow {
-        color: var(--fs-cyan);
-        font: 500 11px 'DM Mono', monospace;
-        letter-spacing: .18em;
-        text-transform: uppercase;
+      color: #d9eee7;
+      font: 500 11px 'DM Mono', monospace;
+      letter-spacing: .18em;
+      text-transform: uppercase;
     }
     .fs-hero {
-        position: relative;
-        overflow: hidden;
-        padding: 27px 30px 25px;
-        margin: 4px 0 25px;
-        border: 1px solid rgba(103,190,194,.23);
-        border-radius: 20px;
-        background:
-            radial-gradient(circle at 84% 10%, rgba(255,155,69,.17), transparent 28%),
-            linear-gradient(115deg, rgba(17,37,48,.98), rgba(14,22,33,.98) 58%, rgba(30,28,28,.92));
-        box-shadow: 0 18px 55px rgba(0,0,0,.22);
+      position: relative; overflow: hidden;
+      padding: 28px 32px 27px; margin: 4px 0 25px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(208,157,111,.25), transparent 28%),
+        linear-gradient(112deg, #315c53 0%, #274941 58%, #3d5148 100%);
+      box-shadow: 0 14px 35px rgba(48,82,70,.14);
     }
-    .fs-hero h1 { margin: 7px 0 5px; font-size: clamp(1.8rem, 3vw, 2.65rem); }
-    .fs-hero p { margin: 0; color: #9eafc0; max-width: 760px; }
+    .fs-hero h1 { margin: 7px 0 5px; color: #ffffff !important; font-size: clamp(1.8rem, 3vw, 2.65rem); }
+    .fs-hero p { margin: 0; color: #e0ece7 !important; max-width: 760px; }
     .fs-hero-tag {
-        display: inline-block; margin-top: 17px; padding: 6px 10px;
-        border-radius: 7px; border: 1px solid rgba(81,214,208,.25);
-        color: #78e0d8; background: rgba(81,214,208,.07);
-        font: 11px 'DM Mono', monospace; letter-spacing: .08em;
+      display: inline-block; margin-top: 17px; padding: 6px 10px;
+      border-radius: 7px; border: 1px solid rgba(222,241,233,.35);
+      color: #e8f5ee; background: rgba(255,255,255,.09);
+      font: 11px 'DM Mono', monospace; letter-spacing: .08em;
     }
     .fs-section-kicker {
-        color: var(--fs-orange); font: 500 10px 'DM Mono', monospace;
-        letter-spacing: .16em; text-transform: uppercase; margin-bottom: 3px;
+      color: var(--fs-copper); font: 500 10px 'DM Mono', monospace;
+      letter-spacing: .16em; text-transform: uppercase; margin-bottom: 3px;
     }
     .fs-mono { font-family: 'DM Mono', monospace; }
     [data-testid="stStatusWidget"] { border-radius: 9px; }
     @media (max-width: 800px) {
-        .block-container { padding-left: 1rem; padding-right: 1rem; }
-        .fs-hero { padding: 21px; }
+      .block-container { padding-left: 1rem; padding-right: 1rem; }
+      .fs-hero { padding: 21px; }
     }
     </style>
     """,
@@ -154,7 +179,7 @@ st.markdown(
     """
     <div class="fs-hero">
       <div class="fs-eyebrow">Financial intelligence · Bitcoin network</div>
-      <h1>FraudShield <span style="color:#ff9b45">/</span> AI</h1>
+      <h1>FraudShield <span style="color:#e0b28e">/</span> AI</h1>
       <p>On-chain investigations, sanctions intelligence and explainable risk signals.
          Evidence first. Decisions with context.</p>
       <span class="fs-hero-tag">● SYSTEM ONLINE &nbsp; / &nbsp; BITCOIN MAINNET DATA</span>
@@ -167,9 +192,9 @@ with st.sidebar:
     st.markdown(
         """
         <div style="padding:4px 0 15px">
-          <div style="font:500 10px 'DM Mono',monospace;letter-spacing:.18em;color:#51d6d0">FRAUDSHIELD / INTEL</div>
-          <div style="font-size:22px;font-weight:800;letter-spacing:-1px;color:#edf4fa;margin-top:5px">Command Center</div>
-          <div style="font:11px 'DM Mono',monospace;color:#8292a6;margin-top:4px">BUILD 0.1.0 · BTC MAINNET</div>
+          <div style="font:500 10px 'DM Mono',monospace;letter-spacing:.18em;color:#267c70">FRAUDSHIELD / INTEL</div>
+          <div style="font-size:22px;font-weight:800;letter-spacing:-1px;color:#29443d;margin-top:5px">Command Center</div>
+          <div style="font:11px 'DM Mono',monospace;color:#71827d;margin-top:4px">BUILD 0.1.0 · BTC MAINNET</div>
         </div>
         """,
         unsafe_allow_html=True,
