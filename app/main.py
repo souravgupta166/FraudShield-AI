@@ -18,33 +18,178 @@ st.set_page_config(
 st.markdown(
     """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+    :root {
+        --fs-bg: #080c12;
+        --fs-panel: #101722;
+        --fs-panel-2: #131e2b;
+        --fs-line: rgba(145, 167, 190, .15);
+        --fs-text: #eaf1f8;
+        --fs-muted: #8292a6;
+        --fs-orange: #ff9b45;
+        --fs-cyan: #51d6d0;
+        --fs-red: #ff657a;
+    }
+
+    html, body, [class*="css"] { font-family: 'Manrope', sans-serif; }
+    .stApp {
+        background:
+            radial-gradient(ellipse at 12% 0%, rgba(34, 91, 112, .19), transparent 34%),
+            radial-gradient(ellipse at 92% 8%, rgba(255, 132, 53, .10), transparent 27%),
+            var(--fs-bg);
+        color: var(--fs-text);
+    }
+    [data-testid="stHeader"] { background: rgba(8,12,18,.72); }
+    [data-testid="stToolbar"] { right: 1rem; }
     .block-container {
-        padding-top: 2rem;
-        padding-bottom: 3rem;
-        max-width: 1450px;
+        padding-top: 1.5rem;
+        padding-bottom: 4rem;
+        max-width: 1540px;
+    }
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0d1520 0%, #0a1018 100%);
+        border-right: 1px solid var(--fs-line);
+    }
+    [data-testid="stSidebar"] > div { padding-top: 1.5rem; }
+    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
+        color: #a7b5c6;
+    }
+    h1, h2, h3 { letter-spacing: -.045em; color: var(--fs-text); }
+    h1 { font-weight: 800 !important; }
+    h2, h3 { font-weight: 750 !important; }
+    p, label, li { color: #b8c5d3; }
+    small, [data-testid="stCaptionContainer"] { color: var(--fs-muted) !important; }
+    code, .stCode, [data-testid="stCode"] {
+        font-family: 'DM Mono', monospace !important;
     }
     div[data-testid="stMetric"] {
-        background: rgba(128, 128, 128, 0.07);
-        border: 1px solid rgba(128, 128, 128, 0.18);
-        padding: 16px;
+        background: linear-gradient(145deg, rgba(21,32,46,.96), rgba(13,21,31,.96));
+        border: 1px solid var(--fs-line);
+        border-radius: 15px;
+        padding: 17px 19px;
+        box-shadow: 0 12px 32px rgba(0,0,0,.16);
+        min-height: 112px;
+    }
+    [data-testid="stMetricLabel"] { color: #91a2b6 !important; font-size: .78rem; font-weight: 700; }
+    [data-testid="stMetricValue"] { color: #f4f8fc !important; font-weight: 800; letter-spacing: -.04em; }
+    [data-testid="stMetricDelta"] { font-family: 'DM Mono', monospace; font-size: .75rem; }
+    div[data-testid="stForm"], div[data-testid="stExpander"], div[data-testid="stDataFrame"] {
+        border: 1px solid var(--fs-line);
+        border-radius: 15px;
+        background: rgba(15,23,34,.72);
+    }
+    div[data-testid="stForm"] { padding: 1.1rem 1.2rem; }
+    div[data-testid="stExpander"] summary { color: #dce6f0; font-weight: 700; }
+    .stTextInput input {
+        background: #0b121c !important;
+        color: #edf5fc !important;
+        border: 1px solid #2a3a4d !important;
+        border-radius: 10px !important;
+        font-family: 'DM Mono', monospace !important;
+    }
+    .stTextInput input:focus {
+        border-color: var(--fs-cyan) !important;
+        box-shadow: 0 0 0 1px var(--fs-cyan) !important;
+    }
+    .stButton button, [data-testid="stFormSubmitButton"] button {
         border-radius: 10px;
+        border: 1px solid rgba(255,155,69,.55);
+        background: linear-gradient(110deg, #ff9b45, #ff713d);
+        color: #111820;
+        font-weight: 800;
+        transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .stButton button:hover, [data-testid="stFormSubmitButton"] button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(255,132,61,.22);
+        color: #101820;
+        border-color: #ffb16f;
+    }
+    hr { border-color: var(--fs-line) !important; }
+    [data-testid="stAlert"] { border-radius: 12px; border: 1px solid var(--fs-line); }
+    [data-testid="stDataFrame"] { overflow: hidden; }
+    .fs-eyebrow {
+        color: var(--fs-cyan);
+        font: 500 11px 'DM Mono', monospace;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+    }
+    .fs-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 27px 30px 25px;
+        margin: 4px 0 25px;
+        border: 1px solid rgba(103,190,194,.23);
+        border-radius: 20px;
+        background:
+            radial-gradient(circle at 84% 10%, rgba(255,155,69,.17), transparent 28%),
+            linear-gradient(115deg, rgba(17,37,48,.98), rgba(14,22,33,.98) 58%, rgba(30,28,28,.92));
+        box-shadow: 0 18px 55px rgba(0,0,0,.22);
+    }
+    .fs-hero h1 { margin: 7px 0 5px; font-size: clamp(1.8rem, 3vw, 2.65rem); }
+    .fs-hero p { margin: 0; color: #9eafc0; max-width: 760px; }
+    .fs-hero-tag {
+        display: inline-block; margin-top: 17px; padding: 6px 10px;
+        border-radius: 7px; border: 1px solid rgba(81,214,208,.25);
+        color: #78e0d8; background: rgba(81,214,208,.07);
+        font: 11px 'DM Mono', monospace; letter-spacing: .08em;
+    }
+    .fs-section-kicker {
+        color: var(--fs-orange); font: 500 10px 'DM Mono', monospace;
+        letter-spacing: .16em; text-transform: uppercase; margin-bottom: 3px;
+    }
+    .fs-mono { font-family: 'DM Mono', monospace; }
+    [data-testid="stStatusWidget"] { border-radius: 9px; }
+    @media (max-width: 800px) {
+        .block-container { padding-left: 1rem; padding-right: 1rem; }
+        .fs-hero { padding: 21px; }
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
+st.markdown(
+    """
+    <div class="fs-hero">
+      <div class="fs-eyebrow">Financial intelligence · Bitcoin network</div>
+      <h1>FraudShield <span style="color:#ff9b45">/</span> AI</h1>
+      <p>On-chain investigations, sanctions intelligence and explainable risk signals.
+         Evidence first. Decisions with context.</p>
+      <span class="fs-hero-tag">● SYSTEM ONLINE &nbsp; / &nbsp; BITCOIN MAINNET DATA</span>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
 with st.sidebar:
-    st.title("🛡️ FraudShield AI")
-    st.caption("Bitcoin Blockchain Intelligence")
+    st.markdown(
+        """
+        <div style="padding:4px 0 15px">
+          <div style="font:500 10px 'DM Mono',monospace;letter-spacing:.18em;color:#51d6d0">FRAUDSHIELD / INTEL</div>
+          <div style="font-size:22px;font-weight:800;letter-spacing:-1px;color:#edf4fa;margin-top:5px">Command Center</div>
+          <div style="font:11px 'DM Mono',monospace;color:#8292a6;margin-top:4px">BUILD 0.1.0 · BTC MAINNET</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     st.divider()
-    st.markdown("**Investigation workspace**")
-    st.markdown("Transaction intelligence")
-    st.markdown("Address intelligence")
+    st.markdown("**WORKSPACES**")
+    st.markdown("◈ &nbsp; Network operations", unsafe_allow_html=True)
+    st.markdown("⌕ &nbsp; Transaction investigation", unsafe_allow_html=True)
+    st.markdown("◎ &nbsp; Address sanctions screening", unsafe_allow_html=True)
     st.divider()
-    st.caption("Network: Bitcoin")
-    st.caption("Data source: Stored public blockchain records")
-    st.caption("Backend: FastAPI")
+    st.markdown("**SYSTEM CONTEXT**")
+    st.caption("Network · Bitcoin")
+    st.caption("Evidence · Public blockchain records")
+    st.caption("API · FastAPI")
+    st.caption("Storage · PostgreSQL")
+    st.divider()
+    st.markdown(
+        '<span style="color:#51d6d0;font:11px \'DM Mono\',monospace">● LIVE MONITORING ENABLED</span>',
+        unsafe_allow_html=True,
+    )
 
 
 
@@ -56,7 +201,7 @@ with st.sidebar:
 def render_ingestion_monitor():
     heading_col, refresh_col = st.columns([3, 1])
 
-    heading_col.title("Live Ingestion Monitor")
+    heading_col.title("Network Operations")
 
     with refresh_col:
         st.markdown(
